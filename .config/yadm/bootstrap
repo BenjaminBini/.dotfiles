@@ -38,7 +38,7 @@ fi
 
 echo "Checking if atuin is installed..."
 if ! [ -x "$(command -v atuin)" ]; then
-  curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh s
+  curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 fi
 
 # Set ZSH as default shell if not set by modifying /etc/passwd
