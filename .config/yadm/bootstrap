@@ -36,6 +36,13 @@ if ! [ -x "$(command -v starship)" ]; then
   sudo ./install.sh  -y
 fi
 
+
+# Install bat if not installed
+echo "Checking if bat is installed..."
+if ! [ -x "$(command -v bat)" ]; then
+  echo "bat is not installed. Installing bat..."
+  sudo apt install bat
+fi
 echo "Checking if atuin is installed..."
 if ! [ -x "$(command -v atuin)" ]; then
   curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
