@@ -33,6 +33,10 @@ if ! [ -x "$(command -v starship)" ]; then
   sudo ./install.sh  -y
 fi
 
+if ! [ -x "$(command -v atuin)" ]; then
+  curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh s
+fi
+
 # Set ZSH as default shell if not set by modifying /etc/passwd
 if [[ $SHELL != "/usr/bin/zsh" ]]; then
   echo "Setting ZSH as default shell..."
