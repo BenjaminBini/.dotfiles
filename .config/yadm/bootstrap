@@ -4,7 +4,7 @@ sudo apt-get update
 
 echo "Installing packages..."
 
-echo "Checking if curl is installed..."
+echo "Checking if zsh is installed..."
 # Install ZSH if not installed
 if ! [ -x "$(command -v zsh)" ]; then
   echo "ZSH is not installed. Installing ZSH..."
@@ -12,12 +12,14 @@ if ! [ -x "$(command -v zsh)" ]; then
 fi
 
 # Install Oh My Zsh if not installed
+echo "Checking if omz is installed..."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "Oh My Zsh is not installed. Installing Oh My Zsh..."
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 # Install nerd fonts if not installed
+echo "Checking if font is installed..."
 if [ ! -d "$HOME/.local/share/fonts" ]; then
   echo "Nerd Fonts is not installed. Installing Nerd Fonts..."
   mkdir -p $HOME/.local/share/fonts
@@ -26,6 +28,7 @@ if [ ! -d "$HOME/.local/share/fonts" ]; then
 fi
 
 # Install Starship if not installed
+echo "Checking if starship is installed..."
 if ! [ -x "$(command -v starship)" ]; then
   echo "Starship is not installed. Installing Starship..."
   curl -O https://starship.rs/install.sh
@@ -33,17 +36,20 @@ if ! [ -x "$(command -v starship)" ]; then
   sudo ./install.sh  -y
 fi
 
+echo "Checking if atuin is installed..."
 if ! [ -x "$(command -v atuin)" ]; then
   curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh s
 fi
 
 # Set ZSH as default shell if not set by modifying /etc/passwd
+echo "Checking if ZSH is default shell..."
 if [[ $SHELL != "/usr/bin/zsh" ]]; then
   echo "Setting ZSH as default shell..."
   sudo sed -i 's|'$USER':/bin/bash|'$USER':/usr/bin/zsh|g' /etc/passwd
 fi
 
-# Init .zshrc with starship activation (if not already initialized)
+# Init .zshrc with starship activation (if not already initialized)èc
+echo "Checking if .zshrc is initialized with starship activation..."
 if ! grep -q "eval \"\$(starship init zsh)\"" $HOME/.zshrc; then
   echo "Initializing .zshrc with starship activation..."
   echo 'eval "$(starship init zsh)"' >> $HOME/.zshrc
