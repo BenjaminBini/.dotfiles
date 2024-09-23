@@ -1,10 +1,15 @@
 
 # ZSH Config
-alias zshapply="source ~/.zshrc"
-alias zshedit="micro ~/.zshrc"
-alias zshalias="micro ~/.zsh_aliases"
-alias zshcode="code ~/.zshrc"
-alias zshcat="cat ~/.zshrc"
+alias zzapply="source ~/.zshrc"
+alias zzcode="code ~/.config/yadm"
+alias zzcat="cat ~/.zshrc"
+alias zzcd="cd ~/.config/yadm"
+alias zzdiff="yadm diff"
+alias zzadd="yadm add"
+alias zzcommit="yadm commit"
+alias zzpush="yadm push"
+alias zzpull="yadm pull"
+alias zzstatus="yadm status"
 
 # LS
 alias ls="eza"

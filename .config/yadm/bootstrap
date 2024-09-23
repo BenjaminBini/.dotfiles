@@ -1,124 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
-# VARIABLES/CONSTANTS ##########################################################
+source $HOME/.config/yadm/utils/_functions.sh
 
-# Variables for dotfiles repo.
-git_host="github.com"
-git_user="pwyde"
-git_repo="dotfiles"
-git_url="https://${git_host}/${git_user}/"
+print_header
 
-# Set XDG directories.
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DATA_HOME="${HOME}/.local/share"
+source $HOME/.config/yadm/vendor-installs/_install_homebrew.sh
 
-## Colorize output.
-# shellcheck disable=SC2034
-red="\033[91m"
-# shellcheck disable=SC2034
-green="\033[92m"
-# shellcheck disable=SC2034
-blue="\033[94m"
-# shellcheck disable=SC2034
-yellow="\033[93m"
-# shellcheck disable=SC2034
-white="\033[97m"
-# shellcheck disable=SC2034
-no_color="\033[0m"
+source $HOME/.config/yadm/vendor-installs/_install-brew-dependencies.sh
 
-print_header() {
-    echo -e "${blue}
-       _     _   ___ _ _
-     _| |___| |_|  _|_| |___ ___
-   _| . | . |  _|  _| | | -_|_ -|
-  |_|___|___|_| |_| |_|_|___|___|${yellow}
-  BOOTSTRAP SCRiPT${white}
+source $HOME/.config/yadm/vendor-installs/_oh-my-zsh.sh
+source $HOME/.config/yadm/vendor-installs/_nerd-fonts.sh
+source $HOME/.config/yadm/vendor-installs/_starship.sh
 
-  ${git_url}${git_repo}${no_color}
-" >&1
-}
-
-
-print_footer() {
-    echo -e "${blue}
-  Bootstrap of dotfiles completed!${yellow}
-  Log out${blue} and${yellow} login${blue} to apply changes!${white}
-
-  See README for more information;
-  ${git_url}${git_repo}/.github/README.md${no_color}
-" >&1
-}
-
-print_msg() {
-    echo -e "${green}=>${no_color}${white}" "${@}" "${no_color}" >&1
-}
-
-cleanup_tmp() {
-    rm -rf "${temp_file}" "${temp_dir}"
-}
-
-print_error() {
-    echo -e "${red}=> ERROR:${no_color}${white}" "${@}" "${no_color}" >&2
-}
-nd 
-
-print_msg "Check application package manager..."
-if ! [ -x "$(command -v app)" ]; then
-  echo "Homebrew is not installed. Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-print_msg "Done."
-
-pkg_list=("git"
-          "zsh"
-          "curl"
-          "bat"
-          "startship"
-          "ranger"
-          "w3m"         # Optional dependency for 'ranger'.
-          "highlight"   # Optional dependency for 'ranger'.
-          "thefuck"
-          "tree"
-          "unzip")
-
-deps_install() {
-    print_msg "Updating package database..."
-    sudo app -m app update
-    print_msg "Installing package dependencies..."
-    sudo app install --yes "${pkg_list[@]}"
-}
-
-
-
-# Install Oh My Zsh if not installed
-echo "Checking if omz is installed..."
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  echo "Oh My Zsh is not installed. Installing Oh My Zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-
-# Install nerd fonts if not installed
-echo "Checking if font is installed..."
-if [ ! -d "$HOME/.local/share/fonts" ]; then
-  echo "Nerd Fonts is not installed. Installing Nerd Fonts..."
-  mkdir -p $HOME/.local/share/fonts
-  cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf
-  fc-cache -f -v
-fi
-
-# Install Starship if not installed
-echo "Checking if starship is installed..."
-if ! [ -x "$(command -v starship)" ]; then
-  echo "Starship is not installed. Installing Starship..."
-  curl -O https://starship.rs/install.sh
-  sudo chmod +x install.sh
-  sudo ./install.sh  -y
-fi
-
-# Set ZSH as default shell if not set by modifying /etc/passwd
-echo "Checking if ZSH is default shell..."
-if [[ $SHELL != "/bin/zsh" ]]; then
-  echo "Setting ZSH as default shell..."
-  sudo sed -i 's|'$USER':/bin/bash|'$USER':/usr/bin/zsh|g' /etc/passwd
-fi
