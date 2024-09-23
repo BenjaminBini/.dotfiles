@@ -3,7 +3,7 @@
 format = """
 [](color_orange)\
 $os\
-$username\
+$username$hostname\
 [](bg:color_yellow fg:color_orange)\
 $directory\
 [](fg:color_yellow bg:color_aqua)\
@@ -61,16 +61,23 @@ Amazon = ""
 Android = ""
 Arch = "󰣇"
 Artix = "󰣇"
+EndeavourOS = ""
 CentOS = ""
 Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
+[hostname]
+ssh_only = true
+trim_at = ""
+style = "bg:color_orange fg:color_fg0"
+format = '[@$hostname]($style)'
+
 [username]
 show_always = true
 style_user = "bg:color_orange fg:color_fg0"
 style_root = "bg:color_orange fg:color_fg0"
-format = '[ $user ]($style)'
+format = '[ $user]($style)'
 
 [directory]
 style = "fg:color_fg0 bg:color_yellow"
