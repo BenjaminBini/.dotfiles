@@ -1,4 +1,3 @@
-
 # ZSH Config
 alias zzapply="source ~/.zshrc"
 alias zzcode="code ~/.config/yadm"
