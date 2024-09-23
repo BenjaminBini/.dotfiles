@@ -41,7 +41,7 @@ fi
 echo "Checking if bat is installed..."
 if ! [ -x "$(command -v bat)" ]; then
   echo "bat is not installed. Installing bat..."
-  sudo apt install bat
+  sudo apt install bat -y
 fi
 echo "Checking if atuin is installed..."
 if ! [ -x "$(command -v atuin)" ]; then

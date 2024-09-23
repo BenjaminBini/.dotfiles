@@ -23,6 +23,8 @@ fi
 
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 
+
+atuin server start
 eval "$(starship init zsh)"
 
 
