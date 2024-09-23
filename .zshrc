@@ -18,15 +18,11 @@ source $ZSH/oh-my-zsh.sh
 # Init tools
 eval "$(starship init zsh)"
 eval $(thefuck --alias)
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 
 # MacOS PATH
 if [[ $(uname) == "Darwin" ]]; then
   export PATH="$PATH:$HOME/.local/bin"
   export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
-else
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 
