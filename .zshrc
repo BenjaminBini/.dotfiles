@@ -14,14 +14,6 @@ plugins=(git)
 # OMZ
 source $ZSH/oh-my-zsh.sh
 
-# Init toos
-eval "$(starship init zsh)"
-eval $(thefuck --alias)
-if [[ $(uname) == "Linux" ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
-
 # MacOS PATH
 if [[ $(uname) == "Darwin" ]]; then
   export PATH="$PATH:$HOME/.local/bin"
@@ -29,6 +21,10 @@ if [[ $(uname) == "Darwin" ]]; then
 else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+
+# Init tools
+eval "$(starship init zsh)"
+eval $(thefuck --alias)
 
 # Load aliases
 [ -f $HOME/.config/yadm/.zsh_aliases ] && source $HOME/.config/yadm/.zsh_aliases
