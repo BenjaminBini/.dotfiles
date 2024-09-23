@@ -5,7 +5,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 yadm pull
 yadm bootstrap
-# VARIABLES/CONSTANTS 
 
 ## Set name of the theme to load
 hostname=$(hostname)
@@ -16,16 +15,19 @@ plugins=(git)
 # OMZ
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Init tools
+eval "$(starship init zsh)"
+eval $(thefuck --alias)
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 
 # MacOS PATH
 if [[ $(uname) == "Darwin" ]]; then
   export PATH="$PATH:$HOME/.local/bin"
   export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
+else
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+
 [ -f $HOME/.config/yadm/.zsh_aliases ] && source $HOME/.config/yadm/.zsh_aliases
-
-
-eval "$(starship init zsh)"
-eval $(thefuck --alias)
