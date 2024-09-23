@@ -3,7 +3,8 @@
 
 # Path to our Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-yadm pull
+
+yadm pull --quiet
 
 ## Set name of the theme to load
 hostname=$(hostname)
