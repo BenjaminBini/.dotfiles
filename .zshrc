@@ -27,11 +27,7 @@ fi
 atuin server start
 eval "$(starship init zsh)"
 
-
-
-
-
-
-
+yadm pull
+yadm bootstrap
 
 
