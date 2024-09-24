@@ -1,4 +1,5 @@
 pkg_list=("git"
+          "eza"
           "zsh"
           "curl"
           "bat"
