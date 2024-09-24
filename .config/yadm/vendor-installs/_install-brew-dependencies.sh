@@ -1,8 +1,8 @@
 pkg_list=("git"
           "eza"
-          "zsh"
           "curl"
           "bat"
+          "btop"
           "starship"
           "ranger"
           "w3m"         # Optional dependency for 'ranger'.
