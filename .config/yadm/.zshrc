@@ -1,1 +1,1 @@
-/Users/benjaminbini/.zshrc
+../../.zshrc
