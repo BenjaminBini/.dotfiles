@@ -21,7 +21,7 @@ hostname=$(hostname)
 plugins=(git)
 
 # OMZ
-#source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # Init tools
 eval "$(starship init zsh)"

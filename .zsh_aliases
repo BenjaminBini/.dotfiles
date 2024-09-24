@@ -1,5 +1,5 @@
 # ZSH Config
-alias zzb=yadm bootstrap
+alias zzb="yadm bootstrap"
 alias zzap="source ~/.zshrc"
 alias zzcd="code ~/.config/yadm"
 alias zzcat="cat ~/.zshrc"
@@ -8,15 +8,22 @@ alias zzd="yadm diff"
 alias zza="yadm add"
 alias zzc="yadm commit"
 alias zzp="yadm push"
-alias zzpl"yadm pull"
+alias zzpl="yadm pull"
 alias zzs="yadm status"
 
 # LS
-alias ls="eza"
-alias ll="eza -lah"
+if command -v eza &> /dev/null; then
+  alias ls="eza"
+  alias ll="eza -lah"
+else
+  alias ls="ls --color=auto"
+  alias ll="ls -lah"
+fi
 
 # CAT
-alias cat=bat
+if command -v bat &> /dev/null; then  
+  alias cat=bat
+fi
 
 # TOP
 alias top=btop
@@ -48,9 +55,6 @@ alias sv124st="sshpass -psully124st ssh root@sv124st.sully-group.fr"
 alias vm23042="ssh -i ~/.ssh/vm23042 sully@vm23042.sully-group.fr"
 alias vm19016="sshpass -psully19016st ssh root@vm19016.sully-group.fr"
 alias sv132st="sshpass -psully132st ssh root@sv132st.sully-group.fr"
-if [[ $hostname = *"macbook"* ]]; then
-  alias biniio="ssh  -i /Users/benjaminbini/Library/CloudStorage/GoogleDrive-benjamin@bini.io/Mon\ Drive/Développement/SSH/Raspberry/pi deploy@bini.io"
-fi
 
 # Tools
 if [[ $hostname = *"macbook"* ]]; then
