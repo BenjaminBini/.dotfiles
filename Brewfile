@@ -75,6 +75,6 @@ cask "visual-studio-code"
 cask "xbar"
 cask "appcleaner"
 cask 'typora'
-cask 'firefox'
+cask "firefox", args: { "no-quarantine" => true }
 cask 'devutils'
 cask 'microsoft-teams'
