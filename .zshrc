@@ -1,5 +1,3 @@
-#! /bin/bash
-
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -10,13 +8,8 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-yadm pull --quiet
-
-## Set name of the theme to load
+## Set var to use in starship
 hostname=$(hostname)
-
-## Enable git plugin
-plugins=(git)
 
 # Init tools
 eval "$(starship init zsh)"
